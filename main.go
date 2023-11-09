@@ -31,14 +31,10 @@ func main() {
 
 		newFilm := Film{title, director}
 		data["Films"] = append(data["Films"], newFilm)
+		tmpl := template.Must(template.ParseFiles("index.htm"))
 
-		newLi := `
-		<li class="list-group-item bg-primary text-white">
-			{{ .Title }} - {{ .Director }}
-		</li>
-		`
-		tmpl, _ := template.New("t").Parse(newLi)
-		tmpl.Execute(w, newFilm)
+		tmpl.ExecuteTemplate(w, "film-list-element", newFilm)
+
 	}
 
 	http.HandleFunc("/add-film/", h2)

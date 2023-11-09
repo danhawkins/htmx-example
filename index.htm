@@ -16,7 +16,7 @@
       <div class="col-8">
         <h1 class="mb-4">Film List</h1>
 
-        <ul class="list-group fs-5 me-5">
+        <ul class="list-group fs-5 me-5" id="film-list">
           {{ range .Films }}
           <li class="list-group-item bg-primary text-white">
             {{ .Title }} - {{ .Director }}
@@ -28,7 +28,7 @@
       <div class="col-4">
         <h1 class="mb-4">Add Film</h1>
 
-        <form hx-post="/add-film/">
+        <form hx-post="/add-film/" hx-target="#film-list" hx-swap="beforeend">
           <div class="mb-2">
             <label for="film-title">Title</label>
             <input type="text" name="title" id="film-title" class="form-control">
@@ -38,7 +38,9 @@
             <input type="text" name="director" id="film-director" class="form-control">
           </div>
 
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
         </form>
       </div>
     </div>
